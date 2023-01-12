@@ -12,12 +12,27 @@ class InquiryController extends Controller
     {
         return view('index');
     }
-    function thanks(Request $request)
+    function add(Request $request)
     {
-        $inquiries = new inquiry();
-        $inquiries->name = $request->name;
-        $inquiries->email = $request->email;
-        $inquiries->save();
-        return view('thanks');
+
+        $inquiry = new Inquiry();
+        $inquiry->name = $request->name;
+        $inquiry->text = $request->text;
+        $inquiry->save();
+        return redirect('/');
+    }
+    function search(Request $request)
+    {
+        $results = Inquiry::all();
+
+        Inquiry::query();
+        $search = $request->search;
+        $query = Inquiry::query();
+        if (!empty($search)) {
+            $query->where('name', 'LIKE', "%{$search}%");
+            $results = $query->get();
+        }
+
+        return view('/search', compact('results'));
     }
 }

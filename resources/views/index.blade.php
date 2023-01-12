@@ -13,9 +13,10 @@
     @csrf
     氏名<br>
     <input type="text" name="name"><br>
-    メールアドレス<br>
-    <input type="email" name="email"><br>
-    <button type="submit">送信する</button>
+    お問い合わせ<br>
+    <input type="text" name="text"><br>
+    <button type="submit">送信する</button><br>
+    <a href="/search">一覧画面へ</a>
   </form>
 
 </body>
